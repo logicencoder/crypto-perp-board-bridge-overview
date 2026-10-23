@@ -1,5 +1,7 @@
 # Deriv Board — Perpetual Futures Markets
 
+![Perpetual futures market overview](assets/overview-2026-10-24.png)
+
 Funding, open interest and trading volume each describe a different part of a derivatives market. Deriv Board brings them into one comparison workspace for supported Binance and Bybit perpetual markets, helping users examine the context behind a headline rate.
 
 ## Tech stack
