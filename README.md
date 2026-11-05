@@ -31,7 +31,7 @@ Open Interest is a leaderboard of where the money sits, ranked by the value of o
 
 ## Carry
 
-Carry is the board's own derived metric: an accumulation of the funding rates stored in the board's history for each market, with the number of hours the history covers, meant to show what a basis position (long spot against a short perpetual) would have collected or paid. The calculation is being revised, so treat the current figures as a rough ranking rather than an amount, and note that they exclude trading fees, spreads and margin costs.
+Carry is the board's own derived metric: the funding that a basis position (long spot against a short perpetual) would have collected or paid over the last seven days, together with the number of hours the history covers. Every stored funding rate is weighted by the time it was in force, so many individual funding payments become one comparable figure per market, ranked from most positive (shorts collected) to most negative. It excludes trading fees, spreads and margin costs, and for markets that settle more often than every eight hours it is an approximation.
 
 ## Crowding
 
