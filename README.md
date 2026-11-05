@@ -23,7 +23,7 @@ The Markets view is the full table: one row per venue and symbol with mark price
 
 ## Funding
 
-The Funding view studies the rate itself: a histogram of funding across markets, the extremes at both ends and a cross-venue funding difference for the same symbol, which shows where one venue charges noticeably more or less than another. The rate shown is the last settled one, with the countdown to the next settlement; an annualised figure (APR) puts different intervals on one scale. Read it as an observation of what longs or shorts pay, not as a forecast of price.
+The Funding view studies the rate itself: a histogram of funding across markets, the extremes at both ends and a cross-venue funding difference for the same symbol, which shows where one venue charges noticeably more or less than another. Rates are shown per eight hours with the countdown to the next settlement, and an annualised figure (APR) assumes three settlements a day. Binance, Bybit and Aster publish a settled rate; Hyperliquid settles hourly and is scaled to eight hours; Lighter publishes no funding rate, so its figure is an estimate from the gap between mark and index price and is marked as such. Read it as an observation of what longs or shorts pay, not as a forecast of price.
 
 ## Open Interest and Volume
 
@@ -31,11 +31,11 @@ Open Interest is a leaderboard of where the money sits, ranked by the value of o
 
 ## Carry
 
-Carry is the board's own derived metric: the cumulative funding that a basis position (long spot or the opposite perpetual leg against a short perpetual) would have collected or paid over the stored history, with the number of hours it covers. It turns many individual funding payments into one comparable figure per market. It depends on the history stored by the board and does not include trading fees, spreads or margin costs.
+Carry is the board's own derived metric: an accumulation of the funding rates stored in the board's history for each market, with the number of hours the history covers, meant to show what a basis position (long spot against a short perpetual) would have collected or paid. The calculation is being revised, so treat the current figures as a rough ranking rather than an amount, and note that they exclude trading fees, spreads and margin costs.
 
 ## Crowding
 
-Crowding is a second derived score for squeeze risk: extreme funding combined with high open interest. A market where one side pays a lot and positions are large ranks high, which is where a forced unwinding would hurt most. It is a screening score defined by this board, not a measure of probability.
+Crowding is a second derived score for squeeze risk. For every market that has both a funding rate and open interest it multiplies the market's rank by absolute funding with its rank by open interest (each as a percentile among the markets shown) and scales the product to 0 to 100, so a market where one side pays a lot and positions are large ranks highest. Markets without open-interest data, such as Binance and Aster symbols outside the top 25 by volume, are not scored. It is a screening score defined by this board, not a probability.
 
 ## Guide and settings
 
@@ -43,7 +43,7 @@ The Guide defines funding, open interest, APR and the cross-venue difference. Se
 
 ## Scope and limits
 
-The board uses public data from the five venues and shows the top markets by volume of each. Funding figures describe what has been charged, derived metrics are the board's own definitions, and none of it is investment advice. Leveraged derivatives carry a high risk of loss, and the offering of such products to retail clients is regulated in many countries.
+The board uses public data from the five venues and shows the 40 markets with the highest 24-hour volume of each. Open interest is fetched per symbol for the 25 largest markets on Binance and Aster and for all rows on the other venues. Funding figures describe what has been charged, derived metrics are the board's own definitions, and none of it is investment advice. Leveraged derivatives carry a high risk of loss, and the offering of such products to retail clients is regulated in many countries.
 
 ---
 
