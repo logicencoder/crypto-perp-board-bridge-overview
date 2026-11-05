@@ -2,44 +2,48 @@
 
 ![Perpetual futures market overview](assets/overview-2026-10-24.png)
 
-Funding, open interest and trading volume each describe a different part of a derivatives market. Deriv Board brings them into one comparison workspace for supported Binance and Bybit perpetual markets, helping users examine the context behind a headline rate.
+Funding rates, open interest and trading volume each describe a different part of a derivatives market, and every venue publishes them in its own format. Deriv Board collects the public data of perpetual futures on five venues (Binance, Bybit, Hyperliquid, Aster and Lighter) into one workspace, so traders and researchers can compare the cost of holding a position, see where open interest sits and spot crowded markets without opening five sites. It runs on [logicencoder.com](https://logicencoder.com) from public endpoints and needs no exchange account.
 
 ## Tech stack
 
 | Layer | Technologies |
 |---|---|
-| Core stack | Python; PHP; WordPress; JavaScript; SQLite |
+| Collection | Python worker polling the public APIs of Binance USD-M, Bybit linear, Hyperliquid, Aster and Lighter every two minutes, with no API keys |
+| History | SQLite snapshots per venue, symbol and time |
+| Delivery | Authenticated REST ingest into a WordPress plugin written in PHP, with page caching switched off for the live view |
+| Interface | JavaScript workspace with sortable, filterable, paged tables, histograms and leaderboards |
 
-## Compare supported markets
+## Overview
 
-The markets board groups key information with venue filters, sortable columns and pagination. Mark prices, funding information and volume can be reviewed together. This gives the user a clearer starting point than opening each venue and product separately.
+The Overview shows a snapshot of the whole board: the number of perpetual markets tracked across the five venues, combined 24-hour volume and combined open interest, the markets with the highest and lowest funding right now, how many markets have positive funding (longs pay shorts) and how many negative (shorts pay longs), and the split of markets by venue. Each venue publishes the top markets by volume, so the board always covers the liquid part of the market.
 
-Venue filters let a reader compare the supported markets from a consistent starting point. Sort the board to bring a relevant rate, price or volume into view before opening a more focused comparison.
+## Markets
 
-## Examine funding
+The Markets view is the full table: one row per venue and symbol with mark price, funding rate, time to the next funding, open interest, its change against 24 hours ago, 24-hour volume and a small funding trend drawn from stored history. Venue filter buttons narrow the table to one venue, any column sorts, and the table is paged. Funding rates with an absolute value of 0.05% or more are highlighted as the crowded side.
 
-The funding view keeps rates and the next funding time visible in context. Highlighting helps locate notable entries within the current selection. A funding figure is one observation about a market, not an independent forecast of its future price.
+## Funding
 
-Read the funding rate together with its venue and next funding time. The dedicated view makes this relationship easier to examine across several markets in one session.
+The Funding view studies the rate itself: a histogram of funding across markets, the extremes at both ends and a cross-venue funding difference for the same symbol, which shows where one venue charges noticeably more or less than another. The rate shown is the last settled one, with the countdown to the next settlement; an annualised figure (APR) puts different intervals on one scale. Read it as an observation of what longs or shorts pay, not as a forecast of price.
 
-## Connect interest with activity
+## Open Interest and Volume
 
-Open-interest and volume views help compare positioning-related information with trading activity. Switching between them can expose questions worth investigating in a particular market. Changes should be read with the available venue and time context.
+Open Interest is a leaderboard of where the money sits, ranked by the value of open positions and showing the change over 24 hours. Volume ranks the 24-hour turnover and adds the ratio of open interest to volume, which separates markets that are mostly traded from markets where positions are mostly held. Switching between the two views for the same symbol is the quickest way to tell a busy market from a heavily positioned one.
 
-These views support different questions about the same market. One emphasises the amount of open positioning, while the other shows trading activity that can provide additional context.
+## Carry
 
-## Explore carry and crowding views
+Carry is the board's own derived metric: the cumulative funding that a basis position (long spot or the opposite perpetual leg against a short perpetual) would have collected or paid over the stored history, with the number of hours it covers. It turns many individual funding payments into one comparable figure per market. It depends on the history stored by the board and does not include trading fees, spreads or margin costs.
 
-Dedicated carry and crowding areas provide additional ways to organise the published market information. They help users compare supported markets from more than one perspective. Their indicators support research rather than guaranteeing a trading result.
+## Crowding
 
-Switching perspectives helps avoid making every comparison about the largest single number. Carry and crowding views keep alternative ways of examining the published data within reach.
+Crowding is a second derived score for squeeze risk: extreme funding combined with high open interest. A market where one side pays a lot and positions are large ranks high, which is where a forced unwinding would hurt most. It is a screening score defined by this board, not a measure of probability.
 
-## Make repeated research easier
+## Guide and settings
 
-Overview, guide and display settings keep the investigation within a familiar workspace. The practical benefit is less repeated navigation while comparing related derivatives information. The board presents market data; execution and portfolio decisions remain separate tasks.
+The Guide defines funding, open interest, APR and the cross-venue difference. Settings adjust the accent colour, font, density and rows per page. The dashboard refreshes on its own every few seconds from the latest snapshot, and all figures carry the time of the last snapshot in UTC.
 
-A typical session begins with the broad market board and follows a candidate through funding, interest and activity. The selected context stays within one research workspace.
+## Scope and limits
 
+The board uses public data from the five venues and shows the top markets by volume of each. Funding figures describe what has been charged, derived metrics are the board's own definitions, and none of it is investment advice. Leveraged derivatives carry a high risk of loss, and the offering of such products to retail clients is regulated in many countries.
 
 ---
 
