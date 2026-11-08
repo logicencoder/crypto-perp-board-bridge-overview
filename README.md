@@ -1,8 +1,8 @@
-# Deriv Board — Perpetual Futures Markets
+# Crypto Perp Board — Perpetual Futures Markets
 
 ![Perpetual futures market overview](assets/deriv-board-funding-open-interest-volume-table.png)
 
-Funding rates, open interest and trading volume each describe a different part of a derivatives market, and every venue publishes them in its own format. Deriv Board collects the public data of perpetual futures on five venues (Binance, Bybit, Hyperliquid, Aster and Lighter) into one workspace, so traders and researchers can compare the cost of holding a position, see where open interest sits and spot crowded markets without opening five sites. It runs on [logicencoder.com](https://logicencoder.com) from public endpoints and needs no exchange account.
+Funding rates, open interest and trading volume each describe a different part of a derivatives market, and every venue publishes them in its own format. Crypto Perp Board collects the public data of perpetual futures on five venues (Binance, Bybit, Hyperliquid, Aster and Lighter) into one workspace, so traders and researchers can compare the cost of holding a position, see where open interest sits and spot crowded markets without opening five sites. It runs on [logicencoder.com](https://logicencoder.com) from public endpoints and needs no exchange account.
 
 ## Tech stack
 
