@@ -47,7 +47,7 @@ The board uses public data from the five venues and shows the 40 markets with th
 
 ---
 
-Private code: [deriv-board-bridge](https://github.com/logicencoder/deriv-board-bridge)
+Private code: [crypto-perp-board-bridge](https://github.com/logicencoder/crypto-perp-board-bridge)
 
 See [REPOS.md](REPOS.md) for related repositories.
 
